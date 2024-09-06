@@ -12,16 +12,20 @@ using static DaggerfallWorkshop.Game.ExteriorAutomap;
 using UnityEditor;
 using System.Linq;
 using System.Collections.Generic;
+using DaggerfallWorkshop.Game.UserInterface;
 
 namespace MapShopTimesMod
 {
     public class MapShopTimes : MonoBehaviour
     {
-        // public string[] buildingNameplatesRef;
         public BuildingNameplate[] buildingNameplatesRef;
         Dictionary<BuildingSummary, string> buildingsList = new Dictionary<BuildingSummary, string>();
+        BuildingSummary buildingSummary;
 
-        string storeTime;
+        string shopTime;
+        string openTime;
+        string closeTime;
+
         private static Mod mod;
 
         [Invoke(StateManager.StateTypes.Start, 0)]
@@ -35,82 +39,72 @@ namespace MapShopTimesMod
             mod.IsReady = true;
         }
 
-        private void Start(){
-            // DaggerfallUI.Instance.UserInterfaceManager.OnWindowChange += UIWindowChange;
-        }
+        // private void Start(){}
 
         private void LateUpdate(){
-            if (DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow){
-            //     if (!ArrayUtility.ArrayEquals(buildingNameplatesRef, ExteriorAutomap.instance.buildingNameplates)){
-            //         buildingNameplatesRef = (BuildingNameplate[])ExteriorAutomap.instance.buildingNameplates.Clone();
-            //         Debug.Log($"MST - nameplates changed!");
-            //     }
-
-                foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
-                    BuildingSummary buildingSummary = (BuildingSummary)buildingNameplate.textLabel.Tag;
-                    if (BuildingIsStore(buildingSummary.BuildingType)){
-
-                        if (buildingsList.TryGetValue(buildingSummary, out string storedToolTip)){
-                            buildingNameplate.textLabel.ToolTipText = storedToolTip;
-                        }else{
-                            storeTime = $"{ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])}";
-                            buildingNameplate.textLabel.ToolTipText += Environment.NewLine + $"\n{storeTime}";
-                            // buildingNameplate.textLabel.ToolTipText += $"\n{storeTime}";
-                            buildingsList.Add(buildingSummary, buildingNameplate.textLabel.ToolTipText);
-                        }
-
-                        // if (buildingNameplate.textLabel.ToolTipText != storeTime){
-                            // buildingNameplate.textLabel.ToolTipText += Environment.NewLine + $"\n{storeTime}";
-                        // }
-                        // Debug.Log($"MST - {buildingNameplate.textLabel.ToolTipText}");
-                        // Debug.Log($"MST - ToolTipText: {buildingNameplate.textLabel.ToolTipText}");
-                        // if (PlayerActivate.IsBuildingOpen(buildingSummary.BuildingType)){
-                        // }
-                    }
-                }
+            if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
+                return;
+            }
+            foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
+                buildingSummary = (BuildingSummary)buildingNameplate.textLabel.Tag;
+                // if (BuildingIsStore(buildingSummary.BuildingType)){
+                //     SetToolTip(buildingNameplate, buildingSummary);
+                // }
+                SetToolTip(buildingNameplate, buildingSummary);
             }
         }
 
-        // void CreateBuildingNamePlates(){
-        //     bool isEqual = true;
-        //     for (int i = 0; i < ExteriorAutomap.instance.buildingNameplates.Length; i++){
-        //         if (isEqual){
-        //             if (buildingNameplatesRef.Length < i || ExteriorAutomap.instance.buildingNameplates[i].name != buildingNameplatesRef[i]){
-        //                 isEqual = false;
-        //             }
-        //         }
-        //         if (!isEqual){
-        //             if (buildingNameplatesRef.Length < i){
-        //                 buildingNameplatesRef.Append(ExteriorAutomap.instance.buildingNameplates[i].name);    
-        //             }else{
-        //                 buildingNameplatesRef[i] = ExteriorAutomap.instance.buildingNameplates[i].name;
-        //             }
-        //         }
-        //     }
-        //     Array.Resize(ref buildingNameplatesRef, ExteriorAutomap.instance.buildingNameplates.Length);
-        // }
+        void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
+            Debug.Log($"MST - Guild: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId)} Access: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()}");
+            
+            if (buildingsList.TryGetValue(buildingSummary, out string storedToolTip)){
+                buildingNameplate.textLabel.ToolTipText = storedToolTip;
+            }
+            else{
+                shopTime = "";
+                if (!BuildingAlwaysOpen(buildingSummary)){
+                    openTime = ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType], buildingSummary.BuildingType);
+                    closeTime = ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType], buildingSummary.BuildingType);
+                    shopTime = $"{openTime} - {closeTime} - ";
+                }
+                buildingNameplate.textLabel.ToolTipText += Environment.NewLine + shopTime.ToString();
+                buildingsList.Add(buildingSummary, buildingNameplate.textLabel.ToolTipText);
+            }
 
-        // void UIWindowChange(object sender, System.EventArgs e){
-        //     Debug.Log($"MST - top window: {DaggerfallUI.UIManager.TopWindow}");
-        //     if (DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow){
-        //         ExteriorAutomap map = ExteriorAutomap.instance;
-        //         foreach (var buildingNameplate in map.buildingNameplates){
-        //             BuildingSummary buildingSummary = (BuildingSummary)buildingNameplate.textLabel.Tag;
-        //             if (BuildingIsStore(buildingSummary.BuildingType)){
-        //                 var openHour = PlayerActivate.openHours[(int)buildingSummary.BuildingType];
-        //                 var closeHour = PlayerActivate.closeHours[(int)buildingSummary.BuildingType];
-        //                 string storeTime = $"{ConvertTime(openHour)} - {ConvertTime(closeHour)}";
-        //                 buildingNameplate.textLabel.ToolTipText += $": {storeTime}";
-        //                 Debug.Log($"MST - {buildingNameplate.textLabel.ToolTipText}");
-        //                 // Debug.Log($"MST - ToolTipText: {buildingNameplate.textLabel.ToolTipText}");
-        //                 // if (PlayerActivate.IsBuildingOpen(buildingSummary.BuildingType)){
-        //                 // }
-        //             }
-        //         }
-        //     }
-        // }
+            // * See if open right now: (includes holidays + guild membership)]
+            if (!GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary) && 
+                buildingSummary.BuildingType < DFLocation.BuildingTypes.Temple
+                && buildingSummary.BuildingType != DFLocation.BuildingTypes.HouseForSale)
+            {
+                buildingNameplate.textLabel.ToolTipText += "CLOSED";
+                Debug.Log($"MST - {buildingSummary.BuildingType} is CLOSED");
+            }else{
+                Debug.Log($"MST - {buildingSummary.BuildingType} is OPEN");
+                buildingNameplate.textLabel.ToolTipText += "OPEN";
+            }
 
-        string ConvertTime(int hour){
+            // if (buildingSummary.BuildingType == DFLocation.BuildingTypes.Palace){
+            //     Debug.Log($"MST - palace open?: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()}");
+            // }
+
+            // if (GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary)){
+            //     buildingNameplate.textLabel.ToolTipText += "OPEN";
+            // }else{
+            //     buildingNameplate.textLabel.ToolTipText += "CLOSED";
+            // }
+        }
+
+        bool BuildingAlwaysOpen(BuildingSummary buildingSummary){
+            return GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime() || 
+                PlayerActivate.openHours[(int)buildingSummary.BuildingType] == 0 && 
+                (PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 25 || PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 0);
+        }
+
+        string ConvertTime(int hour, BuildingTypes buildingType){
+            if (hour >= 24){
+                Debug.Log($"MST - over building type: {buildingType}");
+                return new DateTime(1, 1, 1, 0, 0, 0).ToString("hh:mm tt");
+            }
             return new DateTime(1, 1, 1, hour, 0, 0).ToString("hh:mm tt");
         }
 
