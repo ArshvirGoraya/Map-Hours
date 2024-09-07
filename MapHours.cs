@@ -17,6 +17,7 @@ using UnityScript.Lang;
 using System.Xml;
 using DaggerfallConnect.Utility;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
+using DaggerfallWorkshop.Game.Guilds;
 
 namespace MapHoursMod
 {
@@ -45,7 +46,6 @@ namespace MapHoursMod
             MapHoursSettings = modSettings;
             justOpenedMap = true;
             buildingsList.Clear();
-            Debug.Log($"MST: building list cleared");
         }
         void Start(){
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
@@ -53,13 +53,11 @@ namespace MapHoursMod
         }
 
         private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
-            // if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){ justOpenedMap = true; } // ! check not needed
             justOpenedMap = true;
         }
 
         private void OnMapPixelChanged(DFPosition mapPixel){
             buildingsList.Clear();
-            Debug.Log($"MST: building list cleared");
         }
 
         private void LateUpdate(){
@@ -84,10 +82,6 @@ namespace MapHoursMod
                 // * Check if need to update the open/close text:
                 if (justOpenedMap){
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingSummary);
-                    Debug.Log($"MST: Update previous time");
-                }
-                else{
-                    Debug.Log($"MST: NOT updating previous time");
                 }
             }else{
                 // * Building is NOT stored. 
@@ -97,15 +91,13 @@ namespace MapHoursMod
                 buildingsList.Add(
                     buildingSummary, 
                     new string[2]{
-                        GetBuildingOpenCloseTime(buildingSummary), // * Create Open/Close time for building.
+                        GetBuildingHours(buildingSummary), // * Create Open/Close time for building.
                         GetBuildingOpenClosedText(buildingSummary) // * Get if building is open/closed:
                     }
                 );
             }
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
-
-
 
         string GetStoredToolTipText(BuildingSummary buildingSummary){
             if (MapHoursSettings.GetBool("ToolTips", "HoursAboveOpenClosed")){ 
@@ -114,8 +106,27 @@ namespace MapHoursMod
             return buildingsList[buildingSummary][1] + buildingsList[buildingSummary][0];
         }
         
+        bool IsBuildingAlwaysAccessible(BuildingSummary buildingSummary){
+            // * If opening and closing hours are the same (e.g., Taverns, Temples)
+            if (PlayerActivate.openHours[(int)buildingSummary.BuildingType] == PlayerActivate.closeHours[(int)buildingSummary.BuildingType] % 25){ // If 25 reset to 0.
+                return true;
+            }
+            // * Depends on Guild rank:
+            if (GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()){
+                return true;
+            }
+
+            return false;
+        }
+
         string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowOpenClosed")){ return ""; }
+
+            if (MapHoursSettings.GetBool("ToolTips", "DontShowOpenClosedForAlwaysAccessible") &&
+                IsBuildingAlwaysAccessible(buildingSummary)
+                ){
+                    return "";
+            }
 
             if (MapHoursSettings.GetBool("ToolTips", "OpenIfUnlocked")){ 
                 if (IsBuildingLocked(buildingSummary)){ return Environment.NewLine + CLOSED_TEXT; }
@@ -126,11 +137,19 @@ namespace MapHoursMod
              }
         }
 
-        string GetBuildingOpenCloseTime(BuildingSummary buildingSummary){
+        string GetBuildingHours(BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowHours")){ return ""; }
+
+            if (MapHoursSettings.GetBool("ToolTips", "DontShowHoursForAlwaysAccessible") &&
+                IsBuildingAlwaysAccessible(buildingSummary)
+                ){
+                    return "";
+            }
+
             return Environment.NewLine + $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
 
+        // * Logic taken from PlayerActivate ActivateBuilding().
         bool IsBuildingLocked(BuildingSummary buildingSummary){
             // * See if open right now: (includes holidays + guild membership + quest)]
             return (!GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary) && 

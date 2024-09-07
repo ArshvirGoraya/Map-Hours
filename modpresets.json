@@ -1,0 +1,338 @@
+[
+    {
+        "Title": "Only Show Open/Close",
+        "Author": "Arshvir Goraya",
+        "Description": "Will not show hours. Only shows (open close).",
+        "SettingsVersion": "1.0.0",
+        "Values": {
+            "ToolTips": {
+                "Use12HourTimeFormatting": "False",
+                "OpenIfUnlocked": "True",
+                "HoursAboveOpenClosed": "True",
+                "DontShowHoursForAlwaysAccessible": "True",
+                "DontShowOpenClosedForAlwaysAccessible": "False"
+            },
+            "Alchemist": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Armorer": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Bank": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Bookseller": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "GeneralStore": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "ClothingStore": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "GemStore": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Library": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "GuildHall": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "PawnShop": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "WeaponSmith": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Temple": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Tavern": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "Palace": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "FurnitureStore": {
+                "ShowOpenClosed": "True",
+                "ShowHours": "False"
+            },
+            "HouseForSale": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House1": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House3": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House4": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House5": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House6": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "Town4": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "Town23": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House2": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            }
+        },
+        "$version": "v1"
+    },
+    {
+        "Title": "Only Show Hours",
+        "Author": "Arshvir Goraya",
+        "Description": "Will only show hours. Will not shows (open close).",
+        "SettingsVersion": "1.0.0",
+        "Values": {
+            "ToolTips": {
+                "Use12HourTimeFormatting": "False",
+                "OpenIfUnlocked": "True",
+                "HoursAboveOpenClosed": "True",
+                "DontShowHoursForAlwaysAccessible": "True",
+                "DontShowOpenClosedForAlwaysAccessible": "False"
+            },
+            "Alchemist": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Armorer": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Bank": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Bookseller": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "GeneralStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "ClothingStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "GemStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Library": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "GuildHall": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "PawnShop": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "WeaponSmith": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Temple": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Tavern": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "Palace": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "FurnitureStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "False"
+            },
+            "HouseForSale": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House1": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House2": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House3": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House5": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House6": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town23": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            }
+        },
+        "$version": "v1"
+    },
+    {
+        "Title": "Only Shops",
+        "Author": "Arshvir Goraya",
+        "Description": "Will only show hours and (Open/Close) for shops.",
+        "SettingsVersion": "1.0.0",
+        "Values": {
+            "ToolTips": {
+                "OpenIfUnlocked": "True",
+                "HoursAboveOpenClosed": "True",
+                "DontShowHoursForAlwaysAccessible": "True",
+                "Use12HourTimeFormatting": "False",
+                "DontShowOpenClosedForAlwaysAccessible": "False"
+            },
+            "Alchemist": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "Armorer": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "Bank": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Bookseller": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "GeneralStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "ClothingStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "GemStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "GuildHall": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Library": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "PawnShop": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "WeaponSmith": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "FurnitureStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True"
+            },
+            "Temple": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "Tavern": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Palace": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "HouseForSale": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House1": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House2": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House3": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House5": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House6": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town23": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            }
+        },
+        "$version": "v1"
+    }
+]

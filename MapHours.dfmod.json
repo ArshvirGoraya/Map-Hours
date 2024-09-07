@@ -8,6 +8,7 @@
     "GUID": "b8f9adfa-46fa-40a0-b36f-2694f335c322",
     "Files": [
         "Assets/Game/Mods/MapHours/MapHours.cs",
-        "Assets/Game/Mods/MapHours/modsettings.json"
+        "Assets/Game/Mods/MapHours/modsettings.json",
+        "Assets/Game/Mods/MapHours/modpresets.json"
     ]
 }

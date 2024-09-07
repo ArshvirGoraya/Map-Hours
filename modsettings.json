@@ -7,7 +7,7 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "Use12HourTimeFormatting",
                     "Description": "Uses AM/PM instead of 24 hour formatting.",
                     "$version": "v1",
@@ -24,6 +24,20 @@
                     "Value": true,
                     "Name": "HoursAboveOpenClosed",
                     "Description": "Shows Hours Above (Open/Closed) instead of below.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Value": true,
+                    "Name": "DontShowHoursForAlwaysAccessible",
+                    "Description": "Will not show hours if a building is always accessible.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Value": false,
+                    "Name": "DontShowOpenClosedForAlwaysAccessible",
+                    "Description": "Will not show (open/closed) if a building is always accessible.",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 }
@@ -385,6 +399,28 @@
         {
             "Name": "House1",
             "Description": "",
+            "IsAdvanced": false,
+            "Keys": [
+                {
+                    "Value": false,
+                    "Name": "ShowHours",
+                    "Description": null,
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Value": false,
+                    "Name": "ShowOpenClosed",
+                    "Description": null,
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                }
+            ],
+            "$version": "v1"
+        },
+        {
+            "Name": "House2",
+            "Description": null,
             "IsAdvanced": false,
             "Keys": [
                 {
