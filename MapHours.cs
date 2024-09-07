@@ -89,8 +89,7 @@ namespace MapHoursMod
                 else{
                     Debug.Log($"MST: NOT updating previous time");
                 }
-            }
-            else{
+            }else{
                 // * Building is NOT stored. 
                 // * Create time and open/close text.
                 Debug.Log($"MST: creating tooltip");
@@ -106,17 +105,27 @@ namespace MapHoursMod
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
 
+
+
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            return Environment.NewLine + buildingsList[buildingSummary][0] + Environment.NewLine + buildingsList[buildingSummary][1];
+            return buildingsList[buildingSummary][0] + buildingsList[buildingSummary][1];
         }
         
         string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
-            if (IsBuildingLocked(buildingSummary)){ return CLOSED_TEXT; }
-            return OPEN_TEXT;
+            if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowOpenClosed")){ return ""; }
+
+            if (MapHoursSettings.GetBool("ToolTips", "OpenIfUnlocked")){ 
+                if (IsBuildingLocked(buildingSummary)){ return Environment.NewLine + CLOSED_TEXT; }
+                return Environment.NewLine + OPEN_TEXT;
+             }else{
+                if (!PlayerActivate.IsBuildingOpen(buildingSummary.BuildingType)){ return Environment.NewLine + CLOSED_TEXT; }
+                return Environment.NewLine + OPEN_TEXT;
+             }
         }
 
         string GetBuildingOpenCloseTime(BuildingSummary buildingSummary){
-            return $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
+            if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowTimes")){ return ""; }
+            return Environment.NewLine + $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
 
         bool IsBuildingLocked(BuildingSummary buildingSummary){
@@ -127,10 +136,12 @@ namespace MapHoursMod
         }
 
         string ConvertTime(int hour){
-            if (hour >= 24){
-                return new DateTime(1, 1, 1, 0, 0, 0).ToString("hh:mm tt");
+            if (hour >= 24) {hour = 0;}
+            if (!MapHoursSettings.GetBool("ToolTips", "Use12HourTimeFormatting")){
+                return new DateTime(1, 1, 1, hour, 0, 0).ToString("hh:mm tt"); 
+            }else{
+                return new DateTime(1, 1, 1, hour, 0, 0).ToString("HH:mm");
             }
-            return new DateTime(1, 1, 1, hour, 0, 0).ToString("hh:mm tt");
         }
 
         bool IsBuildingSupported(BuildingTypes buildingType){
@@ -149,15 +160,15 @@ namespace MapHoursMod
             buildingType == BuildingTypes.Temple ||
             buildingType == BuildingTypes.Palace ||
             //! These ones don't really need it.
-            // buildingType == BuildingTypes.HouseForSale ||
-            // buildingType == BuildingTypes.Town4 ||
-            // buildingType == BuildingTypes.House1 ||
-            // buildingType == BuildingTypes.House2 ||
-            // buildingType == BuildingTypes.House3 ||
-            // buildingType == BuildingTypes.House4 ||
-            // buildingType == BuildingTypes.House5 ||
-            // buildingType == BuildingTypes.House6 ||
-            // buildingType == BuildingTypes.Town23 ||
+            buildingType == BuildingTypes.HouseForSale ||
+            buildingType == BuildingTypes.Town4 ||
+            buildingType == BuildingTypes.House1 ||
+            buildingType == BuildingTypes.House2 ||
+            buildingType == BuildingTypes.House3 ||
+            buildingType == BuildingTypes.House4 ||
+            buildingType == BuildingTypes.House5 ||
+            buildingType == BuildingTypes.House6 ||
+            buildingType == BuildingTypes.Town23 ||
             buildingType == BuildingTypes.Tavern;
         }
     }
