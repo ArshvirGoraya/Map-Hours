@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using DaggerfallWorkshop.Game.UserInterface;
 using UnityScript.Lang;
 using System.Xml;
+using DaggerfallConnect.Utility;
 
 namespace MapShopTimesMod
 {
@@ -40,16 +41,29 @@ namespace MapShopTimesMod
         void Start(){
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
             // PlayerGPS.OnExitLocationRect += PlayerGPS_OnExitLocationRect;
+            // PlayerGPS.OnEnterLocationRect += PlayerGPS_OnEnterLocationRect;
+            PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
         }
 
         private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
             // if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){} // ! not needed
             justOpenedMap = true;
         }
+
+        private void OnMapPixelChanged(DFPosition mapPixel){
+            buildingsList.Clear();
+            Debug.Log($"MST: building list cleared");
+        }
+
         // private void PlayerGPS_OnExitLocationRect(){
         //     buildingsList.Clear();
         //     Debug.Log($"MST: exited location");
         // }
+        // private void PlayerGPS_OnEnterLocationRect(DFLocation location){
+        //     buildingsList.Clear();
+        //     Debug.Log($"MST: entered location");
+        // }
+
         private void LateUpdate(){
             if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
                 return;
