@@ -108,7 +108,10 @@ namespace MapHoursMod
 
 
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            return buildingsList[buildingSummary][0] + buildingsList[buildingSummary][1];
+            if (MapHoursSettings.GetBool("ToolTips", "HoursAboveOpenClosed")){ 
+                return buildingsList[buildingSummary][0] + buildingsList[buildingSummary][1];
+            }
+            return buildingsList[buildingSummary][1] + buildingsList[buildingSummary][0];
         }
         
         string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
@@ -124,7 +127,7 @@ namespace MapHoursMod
         }
 
         string GetBuildingOpenCloseTime(BuildingSummary buildingSummary){
-            if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowTimes")){ return ""; }
+            if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowHours")){ return ""; }
             return Environment.NewLine + $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
 
@@ -137,7 +140,7 @@ namespace MapHoursMod
 
         string ConvertTime(int hour){
             if (hour >= 24) {hour = 0;}
-            if (!MapHoursSettings.GetBool("ToolTips", "Use12HourTimeFormatting")){
+            if (MapHoursSettings.GetBool("ToolTips", "Use12HourTimeFormatting")){
                 return new DateTime(1, 1, 1, hour, 0, 0).ToString("hh:mm tt"); 
             }else{
                 return new DateTime(1, 1, 1, hour, 0, 0).ToString("HH:mm");
@@ -145,31 +148,8 @@ namespace MapHoursMod
         }
 
         bool IsBuildingSupported(BuildingTypes buildingType){
-            return buildingType == BuildingTypes.Alchemist ||
-            buildingType == BuildingTypes.Armorer ||
-            buildingType == BuildingTypes.Bank ||
-            buildingType == BuildingTypes.Bookseller ||
-            buildingType == BuildingTypes.ClothingStore ||
-            buildingType == BuildingTypes.FurnitureStore ||
-            buildingType == BuildingTypes.GemStore ||
-            buildingType == BuildingTypes.GeneralStore ||
-            buildingType == BuildingTypes.Library ||
-            buildingType == BuildingTypes.GuildHall ||
-            buildingType == BuildingTypes.PawnShop ||
-            buildingType == BuildingTypes.WeaponSmith ||
-            buildingType == BuildingTypes.Temple ||
-            buildingType == BuildingTypes.Palace ||
-            //! These ones don't really need it.
-            buildingType == BuildingTypes.HouseForSale ||
-            buildingType == BuildingTypes.Town4 ||
-            buildingType == BuildingTypes.House1 ||
-            buildingType == BuildingTypes.House2 ||
-            buildingType == BuildingTypes.House3 ||
-            buildingType == BuildingTypes.House4 ||
-            buildingType == BuildingTypes.House5 ||
-            buildingType == BuildingTypes.House6 ||
-            buildingType == BuildingTypes.Town23 ||
-            buildingType == BuildingTypes.Tavern;
+            if (MapHoursSettings.GetBool(buildingType.ToString(), "ShowHours") || MapHoursSettings.GetBool(buildingType.ToString(), "ShowOpenClosed")){ return true; }
+            return false;
         }
     }
 }

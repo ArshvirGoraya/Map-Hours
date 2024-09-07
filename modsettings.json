@@ -19,6 +19,13 @@
                     "Description": "Shows buildings as opened if they are unlocked to you, even if not within opening hours.",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Value": true,
+                    "Name": "HoursAboveOpenClosed",
+                    "Description": "Shows Hours Above (Open/Closed) instead of below.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 }
             ],
             "$version": "v1"
@@ -30,7 +37,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -52,7 +59,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -74,7 +81,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -96,7 +103,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -118,7 +125,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -140,7 +147,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -162,7 +169,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -184,7 +191,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -206,7 +213,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -228,7 +235,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -250,7 +257,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -272,7 +279,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -294,7 +301,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -316,7 +323,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -338,7 +345,7 @@
             "Keys": [
                 {
                     "Value": true,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -360,7 +367,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -382,7 +389,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -404,7 +411,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -426,7 +433,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -448,7 +455,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -470,7 +477,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -492,7 +499,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
@@ -514,7 +521,7 @@
             "Keys": [
                 {
                     "Value": false,
-                    "Name": "ShowTimes",
+                    "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
