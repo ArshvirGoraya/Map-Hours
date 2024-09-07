@@ -16,37 +16,44 @@ using DaggerfallWorkshop.Game.UserInterface;
 using UnityScript.Lang;
 using System.Xml;
 using DaggerfallConnect.Utility;
+using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
 
-namespace MapShopTimesMod
+namespace MapHoursMod
 {
-    public class MapShopTimes : MonoBehaviour
+    public class MapHours : MonoBehaviour
     {
         public BuildingNameplate[] buildingNameplatesRef;
-        readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
+        static readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
         const string OPEN_TEXT = "(OPEN)";
         const string CLOSED_TEXT = "(CLOSED)";
-
         static bool justOpenedMap = false;
+        static ModSettings MapHoursSettings;
 
         private static Mod mod;
         [Invoke(StateManager.StateTypes.Start, 0)]
-        public static void Init(InitParams initParams)
-        {
+        public static void Init(InitParams initParams){
             mod = initParams.Mod;
             var go = new GameObject(mod.Title);
-            go.AddComponent<MapShopTimes>();
+            go.AddComponent<MapHours>();
+            mod.LoadSettingsCallback = LoadSettings;
+            mod.LoadSettings();
             mod.IsReady = true;
+        }
 
+        // * Raised when user changes mod settings.
+        static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
+            MapHoursSettings = modSettings;
+            justOpenedMap = true;
+            buildingsList.Clear();
+            Debug.Log($"MST: building list cleared");
         }
         void Start(){
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
-            // PlayerGPS.OnExitLocationRect += PlayerGPS_OnExitLocationRect;
-            // PlayerGPS.OnEnterLocationRect += PlayerGPS_OnEnterLocationRect;
             PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
         }
 
         private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
-            // if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){} // ! not needed
+            // if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){ justOpenedMap = true; } // ! check not needed
             justOpenedMap = true;
         }
 
@@ -55,22 +62,13 @@ namespace MapShopTimesMod
             Debug.Log($"MST: building list cleared");
         }
 
-        // private void PlayerGPS_OnExitLocationRect(){
-        //     buildingsList.Clear();
-        //     Debug.Log($"MST: exited location");
-        // }
-        // private void PlayerGPS_OnEnterLocationRect(DFLocation location){
-        //     buildingsList.Clear();
-        //     Debug.Log($"MST: entered location");
-        // }
-
         private void LateUpdate(){
             if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
                 return;
             }
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
                 if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
-                    // * If first building has the same Label as the stored, no need to update any. 
+                    // * If first building has the same Label as the stored, no need to update any. Unless is a forceupdate.
                     if (buildingNameplate.textLabel.ToolTipText.EndsWith(")")){ // * If there is an event that triggers when automap is re-rendered, use that instead.
                         return;
                     }
@@ -79,6 +77,7 @@ namespace MapShopTimesMod
             }
             justOpenedMap = false;
         }
+
         void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingsList.TryGetValue(buildingSummary, out _)){
                 // * Building is stored.
@@ -86,7 +85,8 @@ namespace MapShopTimesMod
                 if (justOpenedMap){
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingSummary);
                     Debug.Log($"MST: Update previous time");
-                }else{
+                }
+                else{
                     Debug.Log($"MST: NOT updating previous time");
                 }
             }
@@ -116,7 +116,7 @@ namespace MapShopTimesMod
         }
 
         string GetBuildingOpenCloseTime(BuildingSummary buildingSummary){
-            return $"{ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])}";
+            return $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
 
         bool IsBuildingLocked(BuildingSummary buildingSummary){
@@ -124,12 +124,6 @@ namespace MapShopTimesMod
             return (!GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary) && 
                 buildingSummary.BuildingType < DFLocation.BuildingTypes.Temple
                 && buildingSummary.BuildingType != DFLocation.BuildingTypes.HouseForSale);
-        }
-
-        bool BuildingAlwaysOpen(BuildingSummary buildingSummary){
-            return GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime() || 
-                PlayerActivate.openHours[(int)buildingSummary.BuildingType] == 0 && 
-                (PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 25 || PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 0);
         }
 
         string ConvertTime(int hour){
