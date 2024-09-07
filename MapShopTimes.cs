@@ -13,18 +13,24 @@ using UnityEditor;
 using System.Linq;
 using System.Collections.Generic;
 using DaggerfallWorkshop.Game.UserInterface;
+using UnityScript.Lang;
+using System.Xml;
 
 namespace MapShopTimesMod
 {
     public class MapShopTimes : MonoBehaviour
     {
         public BuildingNameplate[] buildingNameplatesRef;
-        Dictionary<BuildingSummary, string> buildingsList = new Dictionary<BuildingSummary, string>();
-        BuildingSummary buildingSummary;
+        // Dictionary<BuildingSummary, string> buildingsList = new Dictionary<BuildingSummary, string>();
+        Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
 
-        string shopTime;
+        const string OPEN_TEXT = "OPEN";
+        const string CLOSED_TEXT = "CLOSED";
+
+        string buildingTime;
         string openTime;
         string closeTime;
+        DaggerfallDateTime previousTime;
 
         private static Mod mod;
 
@@ -46,52 +52,60 @@ namespace MapShopTimesMod
                 return;
             }
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
-                buildingSummary = (BuildingSummary)buildingNameplate.textLabel.Tag;
-                // if (BuildingIsStore(buildingSummary.BuildingType)){
-                //     SetToolTip(buildingNameplate, buildingSummary);
-                // }
-                SetToolTip(buildingNameplate, buildingSummary);
+                if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
+                    // * If first building has the same Label as the stored, no need to update any. 
+                    if (buildingNameplate.textLabel.ToolTipText.EndsWith("AM") || buildingNameplate.textLabel.ToolTipText.EndsWith("PM")){
+                        return;
+                        // continue;
+                    }
+                    SetToolTip(buildingNameplate, (BuildingSummary)buildingNameplate.textLabel.Tag);
+                }
             }
         }
 
         void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
-            Debug.Log($"MST - Guild: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId)} Access: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()}");
-            
-            if (buildingsList.TryGetValue(buildingSummary, out string storedToolTip)){
-                buildingNameplate.textLabel.ToolTipText = storedToolTip;
+            if (buildingsList.TryGetValue(buildingSummary, out _)){
+                // * Building is stored.
+                // * Check if need to update the open/close text:
+                if (previousTime == DaggerfallUnity.Instance.WorldTime.Now){
+                    buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingSummary);
+                    Debug.Log($"MST: Update previous time");
+                }
             }
             else{
-                shopTime = "";
-                if (!BuildingAlwaysOpen(buildingSummary)){
-                    openTime = ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType], buildingSummary.BuildingType);
-                    closeTime = ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType], buildingSummary.BuildingType);
-                    shopTime = $"{openTime} - {closeTime} - ";
-                }
-                buildingNameplate.textLabel.ToolTipText += Environment.NewLine + shopTime.ToString();
-                buildingsList.Add(buildingSummary, buildingNameplate.textLabel.ToolTipText);
+                // * Building is NOT stored. 
+                // * Create time and open/close text.
+                Debug.Log($"MST: creating tooltip");
+                GetBuildingOpenClosedText(buildingSummary);
+                buildingsList.Add(
+                    buildingSummary, 
+                    new string[2]{
+                        GetBuildingOpenCloseTime(buildingSummary), // * Create Open/Close time for building.
+                        GetBuildingOpenClosedText(buildingSummary) // * Get if building is open/closed:
+                    }
+                );
             }
+            buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
+        }
 
-            // * See if open right now: (includes holidays + guild membership)]
-            if (!GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary) && 
+        string GetStoredToolTipText(BuildingSummary buildingSummary){
+            return Environment.NewLine + buildingsList[buildingSummary][1] + " - " + buildingsList[buildingSummary][0];
+        }
+        
+        string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
+            if (IsBuildingLocked(buildingSummary)){ return CLOSED_TEXT; }
+            return OPEN_TEXT;
+        }
+
+        string GetBuildingOpenCloseTime(BuildingSummary buildingSummary){
+            return $"{ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])}";
+        }
+
+        bool IsBuildingLocked(BuildingSummary buildingSummary){
+            // * See if open right now: (includes holidays + guild membership + quest)]
+            return (!GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary) && 
                 buildingSummary.BuildingType < DFLocation.BuildingTypes.Temple
-                && buildingSummary.BuildingType != DFLocation.BuildingTypes.HouseForSale)
-            {
-                buildingNameplate.textLabel.ToolTipText += "CLOSED";
-                Debug.Log($"MST - {buildingSummary.BuildingType} is CLOSED");
-            }else{
-                Debug.Log($"MST - {buildingSummary.BuildingType} is OPEN");
-                buildingNameplate.textLabel.ToolTipText += "OPEN";
-            }
-
-            // if (buildingSummary.BuildingType == DFLocation.BuildingTypes.Palace){
-            //     Debug.Log($"MST - palace open?: {GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()}");
-            // }
-
-            // if (GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary)){
-            //     buildingNameplate.textLabel.ToolTipText += "OPEN";
-            // }else{
-            //     buildingNameplate.textLabel.ToolTipText += "CLOSED";
-            // }
+                && buildingSummary.BuildingType != DFLocation.BuildingTypes.HouseForSale);
         }
 
         bool BuildingAlwaysOpen(BuildingSummary buildingSummary){
@@ -100,29 +114,39 @@ namespace MapShopTimesMod
                 (PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 25 || PlayerActivate.closeHours[(int)buildingSummary.BuildingType] == 0);
         }
 
-        string ConvertTime(int hour, BuildingTypes buildingType){
+        string ConvertTime(int hour){
             if (hour >= 24){
-                Debug.Log($"MST - over building type: {buildingType}");
                 return new DateTime(1, 1, 1, 0, 0, 0).ToString("hh:mm tt");
             }
             return new DateTime(1, 1, 1, hour, 0, 0).ToString("hh:mm tt");
         }
 
-        bool BuildingIsStore(BuildingTypes buildingType){
-            if (
-                buildingType == BuildingTypes.GeneralStore ||
-                buildingType == BuildingTypes.PawnShop ||
-                buildingType == BuildingTypes.WeaponSmith ||
-                buildingType == BuildingTypes.Alchemist ||
-                buildingType == BuildingTypes.GemStore ||
-                buildingType == BuildingTypes.ClothingStore ||
-                buildingType == BuildingTypes.Bank ||
-                buildingType == BuildingTypes.Bookseller ||
-                buildingType == BuildingTypes.Library
-                ){
-                return true;
-            }
-            return false;
+        bool IsBuildingSupported(BuildingTypes buildingType){
+            return buildingType == BuildingTypes.Alchemist ||
+            buildingType == BuildingTypes.Armorer ||
+            buildingType == BuildingTypes.Bank ||
+            buildingType == BuildingTypes.Bookseller ||
+            buildingType == BuildingTypes.ClothingStore ||
+            buildingType == BuildingTypes.FurnitureStore ||
+            buildingType == BuildingTypes.GemStore ||
+            buildingType == BuildingTypes.GeneralStore ||
+            buildingType == BuildingTypes.Library ||
+            buildingType == BuildingTypes.GuildHall ||
+            buildingType == BuildingTypes.PawnShop ||
+            buildingType == BuildingTypes.WeaponSmith ||
+            buildingType == BuildingTypes.Temple ||
+            buildingType == BuildingTypes.Palace ||
+            //! These ones don't really need it.
+            // buildingType == BuildingTypes.HouseForSale ||
+            // buildingType == BuildingTypes.Town4 ||
+            // buildingType == BuildingTypes.House1 ||
+            // buildingType == BuildingTypes.House2 ||
+            // buildingType == BuildingTypes.House3 ||
+            // buildingType == BuildingTypes.House4 ||
+            // buildingType == BuildingTypes.House5 ||
+            // buildingType == BuildingTypes.House6 ||
+            // buildingType == BuildingTypes.Town23 ||
+            buildingType == BuildingTypes.Tavern;
         }
     }
 }
