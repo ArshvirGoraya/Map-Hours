@@ -5,13 +5,6 @@
         "Description": "Will not show hours. Only shows (open close).",
         "SettingsVersion": "1.0.0",
         "Values": {
-            "ToolTips": {
-                "Use12HourTimeFormatting": "False",
-                "OpenIfUnlocked": "True",
-                "HoursAboveOpenClosed": "True",
-                "DontShowHoursForAlwaysAccessible": "True",
-                "DontShowOpenClosedForAlwaysAccessible": "False"
-            },
             "Alchemist": {
                 "ShowOpenClosed": "True",
                 "ShowHours": "False"
@@ -117,13 +110,6 @@
         "Description": "Will only show hours. Will not shows (open close).",
         "SettingsVersion": "1.0.0",
         "Values": {
-            "ToolTips": {
-                "Use12HourTimeFormatting": "False",
-                "OpenIfUnlocked": "True",
-                "HoursAboveOpenClosed": "True",
-                "DontShowHoursForAlwaysAccessible": "True",
-                "DontShowOpenClosedForAlwaysAccessible": "False"
-            },
             "Alchemist": {
                 "ShowHours": "True",
                 "ShowOpenClosed": "False"
@@ -229,13 +215,6 @@
         "Description": "Will only show hours and (Open/Close) for shops.",
         "SettingsVersion": "1.0.0",
         "Values": {
-            "ToolTips": {
-                "OpenIfUnlocked": "True",
-                "HoursAboveOpenClosed": "True",
-                "DontShowHoursForAlwaysAccessible": "True",
-                "Use12HourTimeFormatting": "False",
-                "DontShowOpenClosedForAlwaysAccessible": "False"
-            },
             "Alchemist": {
                 "ShowHours": "True",
                 "ShowOpenClosed": "True"

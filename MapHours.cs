@@ -1,23 +1,15 @@
 ﻿using UnityEngine;
 using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Utility.ModSupport;
-using static DaggerfallWorkshop.Game.DaggerfallUI;
 using DaggerfallWorkshop.Game.UserInterfaceWindows;
-using DaggerfallWorkshop.Utility;
 using DaggerfallConnect;
 using DaggerfallWorkshop;
 using static DaggerfallConnect.DFLocation;
 using System;
 using static DaggerfallWorkshop.Game.ExteriorAutomap;
-using UnityEditor;
-using System.Linq;
 using System.Collections.Generic;
-using DaggerfallWorkshop.Game.UserInterface;
-using UnityScript.Lang;
-using System.Xml;
 using DaggerfallConnect.Utility;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
-using DaggerfallWorkshop.Game.Guilds;
 
 namespace MapHoursMod
 {
@@ -122,7 +114,7 @@ namespace MapHoursMod
         string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowOpenClosed")){ return ""; }
 
-            if (MapHoursSettings.GetBool("ToolTips", "DontShowOpenClosedForAlwaysAccessible") &&
+            if (MapHoursSettings.GetBool("ToolTipsExperimental", "DontShowOpenClosedForAlwaysAccessible") &&
                 IsBuildingAlwaysAccessible(buildingSummary)
                 ){
                     return "";
@@ -140,7 +132,7 @@ namespace MapHoursMod
         string GetBuildingHours(BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowHours")){ return ""; }
 
-            if (MapHoursSettings.GetBool("ToolTips", "DontShowHoursForAlwaysAccessible") &&
+            if (MapHoursSettings.GetBool("ToolTipsExperimental", "DontShowHoursForAlwaysAccessible") &&
                 IsBuildingAlwaysAccessible(buildingSummary)
                 ){
                     return "";
