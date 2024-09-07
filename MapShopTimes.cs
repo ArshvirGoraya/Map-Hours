@@ -24,7 +24,8 @@ namespace MapShopTimesMod
         readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
         const string OPEN_TEXT = "(OPEN)";
         const string CLOSED_TEXT = "(CLOSED)";
-        DaggerfallDateTime previousTime = DaggerfallUnity.Instance.WorldTime.Now.Clone();
+
+        static bool justOpenedMap = false;
 
         private static Mod mod;
         [Invoke(StateManager.StateTypes.Start, 0)]
@@ -34,7 +35,21 @@ namespace MapShopTimesMod
             var go = new GameObject(mod.Title);
             go.AddComponent<MapShopTimes>();
             mod.IsReady = true;
+
         }
+        void Start(){
+            DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
+            // PlayerGPS.OnExitLocationRect += PlayerGPS_OnExitLocationRect;
+        }
+
+        private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
+            // if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){} // ! not needed
+            justOpenedMap = true;
+        }
+        // private void PlayerGPS_OnExitLocationRect(){
+        //     buildingsList.Clear();
+        //     Debug.Log($"MST: exited location");
+        // }
         private void LateUpdate(){
             if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
                 return;
@@ -42,19 +57,19 @@ namespace MapShopTimesMod
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
                 if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
                     // * If first building has the same Label as the stored, no need to update any. 
-                    if (buildingNameplate.textLabel.ToolTipText.EndsWith(")")){
+                    if (buildingNameplate.textLabel.ToolTipText.EndsWith(")")){ // * If there is an event that triggers when automap is re-rendered, use that instead.
                         return;
                     }
                     SetToolTip(buildingNameplate, (BuildingSummary)buildingNameplate.textLabel.Tag);
                 }
             }
+            justOpenedMap = false;
         }
         void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingsList.TryGetValue(buildingSummary, out _)){
                 // * Building is stored.
                 // * Check if need to update the open/close text:
-                if (!IsTimeSame(previousTime, DaggerfallUnity.Instance.WorldTime.Now)){
-                    previousTime = DaggerfallUnity.Instance.WorldTime.Now.Clone();
+                if (justOpenedMap){
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingSummary);
                     Debug.Log($"MST: Update previous time");
                 }else{
@@ -75,16 +90,6 @@ namespace MapShopTimesMod
                 );
             }
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
-        }
-
-        bool IsTimeSame(DaggerfallDateTime previousTime, DaggerfallDateTime newTime){
-            // * Probably more efficient than DaggerfallDateTime.Equals()
-            return previousTime.Second == newTime.Second &&
-            previousTime.Minute == newTime.Minute &&
-            previousTime.Hour == newTime.Hour &&
-            previousTime.Day == newTime.Day &&
-            previousTime.Month == newTime.Month &&
-            previousTime.Year == newTime.Year;
         }
 
         string GetStoredToolTipText(BuildingSummary buildingSummary){
