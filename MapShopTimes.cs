@@ -21,32 +21,20 @@ namespace MapShopTimesMod
     public class MapShopTimes : MonoBehaviour
     {
         public BuildingNameplate[] buildingNameplatesRef;
-        // Dictionary<BuildingSummary, string> buildingsList = new Dictionary<BuildingSummary, string>();
-        Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
-
-        const string OPEN_TEXT = "OPEN";
-        const string CLOSED_TEXT = "CLOSED";
-
-        string buildingTime;
-        string openTime;
-        string closeTime;
-        DaggerfallDateTime previousTime;
+        readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
+        const string OPEN_TEXT = "(OPEN)";
+        const string CLOSED_TEXT = "(CLOSED)";
+        DaggerfallDateTime previousTime = DaggerfallUnity.Instance.WorldTime.Now.Clone();
 
         private static Mod mod;
-
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams)
         {
             mod = initParams.Mod;
-
             var go = new GameObject(mod.Title);
             go.AddComponent<MapShopTimes>();
-
             mod.IsReady = true;
         }
-
-        // private void Start(){}
-
         private void LateUpdate(){
             if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
                 return;
@@ -54,22 +42,23 @@ namespace MapShopTimesMod
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
                 if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
                     // * If first building has the same Label as the stored, no need to update any. 
-                    if (buildingNameplate.textLabel.ToolTipText.EndsWith("AM") || buildingNameplate.textLabel.ToolTipText.EndsWith("PM")){
+                    if (buildingNameplate.textLabel.ToolTipText.EndsWith(")")){
                         return;
-                        // continue;
                     }
                     SetToolTip(buildingNameplate, (BuildingSummary)buildingNameplate.textLabel.Tag);
                 }
             }
         }
-
         void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingsList.TryGetValue(buildingSummary, out _)){
                 // * Building is stored.
                 // * Check if need to update the open/close text:
-                if (previousTime == DaggerfallUnity.Instance.WorldTime.Now){
+                if (!IsTimeSame(previousTime, DaggerfallUnity.Instance.WorldTime.Now)){
+                    previousTime = DaggerfallUnity.Instance.WorldTime.Now.Clone();
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingSummary);
                     Debug.Log($"MST: Update previous time");
+                }else{
+                    Debug.Log($"MST: NOT updating previous time");
                 }
             }
             else{
@@ -88,8 +77,18 @@ namespace MapShopTimesMod
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
 
+        bool IsTimeSame(DaggerfallDateTime previousTime, DaggerfallDateTime newTime){
+            // * Probably more efficient than DaggerfallDateTime.Equals()
+            return previousTime.Second == newTime.Second &&
+            previousTime.Minute == newTime.Minute &&
+            previousTime.Hour == newTime.Hour &&
+            previousTime.Day == newTime.Day &&
+            previousTime.Month == newTime.Month &&
+            previousTime.Year == newTime.Year;
+        }
+
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            return Environment.NewLine + buildingsList[buildingSummary][1] + " - " + buildingsList[buildingSummary][0];
+            return Environment.NewLine + buildingsList[buildingSummary][0] + Environment.NewLine + buildingsList[buildingSummary][1];
         }
         
         string GetBuildingOpenClosedText(BuildingSummary buildingSummary){
