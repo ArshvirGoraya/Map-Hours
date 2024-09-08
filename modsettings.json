@@ -21,7 +21,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "HoursBeforeOpenClosed",
                     "Description": "Shows Hours Before (Open/Closed) instead of After.",
                     "$version": "v1",

@@ -313,5 +313,110 @@
             }
         },
         "$version": "v1"
+    },
+    {
+        "Title": "Disable",
+        "Author": "Arshvir Goraya",
+        "Description": "Doesn't show Hours or (Open/Close) for any buildings.",
+        "SettingsVersion": "1.0.0",
+        "Values": {
+            "Alchemist": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Armorer": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Bank": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "GeneralStore": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Bookseller": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "ClothingStore": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Library": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "GemStore": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "GuildHall": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "PawnShop": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "WeaponSmith": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Temple": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Palace": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Tavern": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "FurnitureStore": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "HouseForSale": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House1": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House2": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House3": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House5": {
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
+            },
+            "House4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "House6": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town4": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            },
+            "Town23": {
+                "ShowHours": "False",
+                "ShowOpenClosed": "False"
+            }
+        },
+        "$version": "v1"
     }
 ]

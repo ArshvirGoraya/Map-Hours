@@ -4,7 +4,7 @@
     "ModAuthor": "Arshvir Goraya",
     "ContactInfo": "arshvir.dev@gmail.com",
     "DFUnity_Version": "1.1.0",
-    "ModDescription": "Shows opening/closing times in map for buildings when hovering over them.",
+    "ModDescription": "Shows the opening/closing times of buildings in the map.",
     "GUID": "25676268-eb85-4f17-9f56-ad9f69fd96b8",
     "Files": [
         "Assets/Game/Mods/MapHours/MapHours.cs",
