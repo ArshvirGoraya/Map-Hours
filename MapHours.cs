@@ -28,8 +28,8 @@ namespace MapHoursMod
         const string CLOSED_TEXT = "(CLOSED)";
         static bool justOpenedMap = false;
         static string locationDungeonName = null;
+        ////////////////////////////////////
         static ModSettings MapHoursSettings;
-
         private static Mod mod;
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams){
@@ -40,7 +40,6 @@ namespace MapHoursMod
             mod.LoadSettings();
             mod.IsReady = true;
         }
-
         static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
             MapHoursSettings = modSettings;
             ResetStorage();
@@ -102,10 +101,37 @@ namespace MapHoursMod
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            if (MapHoursSettings.GetBool("ToolTips", "HoursBeforeOpenClosed")){ 
-                return buildingsList[buildingSummary][0] + buildingsList[buildingSummary][1];
+            if (buildingsList[buildingSummary][0].Length == 0 && buildingsList[buildingSummary][1].Length == 0){
+                return "";
             }
-            return buildingsList[buildingSummary][1] + buildingsList[buildingSummary][0];
+            string hours = buildingsList[buildingSummary][0];
+            string openClosed = buildingsList[buildingSummary][1];
+            string returnText = "";
+
+            if (MapHoursSettings.GetBool("ToolTips", "HoursBeforeOpenClosed")){
+                if (hours.Length != 0){
+                    returnText += Environment.NewLine + hours; 
+                    if (MapHoursSettings.GetBool("ToolTips", "ShowHoursAndOpenClosedInSameLine")){
+                        if (openClosed.Length != 0){ returnText += " " + openClosed; }
+                    }else{
+                        if (openClosed.Length != 0){ returnText += Environment.NewLine + openClosed; }
+                    }
+                }else{
+                    if (openClosed.Length != 0){ returnText += Environment.NewLine + openClosed; }
+                }
+            }else{
+                if (openClosed.Length != 0){
+                    returnText += Environment.NewLine + openClosed; 
+                    if (MapHoursSettings.GetBool("ToolTips", "ShowHoursAndOpenClosedInSameLine")){
+                        if (hours.Length != 0){ returnText += " " + hours; }
+                    }else{
+                        if (hours.Length != 0){ returnText += Environment.NewLine + hours; }
+                    }
+                }else{
+                    if (hours.Length != 0){ returnText += Environment.NewLine + hours; }
+                }
+            }
+            return returnText;
         }
         bool IsBuildingAlwaysAccessible(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             // * If opening and closing hours are the same (e.g., Taverns, Temples)
@@ -116,15 +142,14 @@ namespace MapHoursMod
             if (GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()){
                 return true;
             }
-
+            // * Is a dungeon (e.g., Castle Daggerfall, Palace Sentinel, etc.)
             if (buildingNameplate.textLabel.ToolTipText.Equals(locationDungeonName)){
                 return true;
             }
             return false;
         }
         // * Taken from: DaggerfallDungeon.cs
-        static public string GetSpecialDungeonName(LocationSummary summary)
-        {
+        static public string GetSpecialDungeonName(LocationSummary summary){
             string dungeonName;
             if (summary.RegionName == "Daggerfall" && summary.LocationName == "Daggerfall")
                 dungeonName = DaggerfallUnity.Instance.TextProvider.GetText(475);
@@ -134,7 +159,6 @@ namespace MapHoursMod
                 dungeonName = DaggerfallUnity.Instance.TextProvider.GetText(477);
             else
                 dungeonName = summary.LocationName;
-
             return dungeonName.TrimEnd('.');
         }
         string GetBuildingOpenClosedText(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
@@ -145,11 +169,11 @@ namespace MapHoursMod
             ){ return ""; }
 
             if (MapHoursSettings.GetBool("ToolTips", "OpenIfUnlocked")){
-                if (IsBuildingLocked(buildingNameplate, buildingSummary)){ return Environment.NewLine + CLOSED_TEXT; }
-                else { return Environment.NewLine + OPEN_TEXT; } 
+                if (IsBuildingLocked(buildingNameplate, buildingSummary)){ return CLOSED_TEXT; }
+                else { return OPEN_TEXT; } 
              }else{
-                if (!PlayerActivate.IsBuildingOpen(buildingSummary.BuildingType)){ return Environment.NewLine + CLOSED_TEXT; }
-                else { return Environment.NewLine + OPEN_TEXT; } 
+                if (!PlayerActivate.IsBuildingOpen(buildingSummary.BuildingType)){ return CLOSED_TEXT; }
+                else { return OPEN_TEXT; } 
              }
         }
         string GetBuildingHours(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
@@ -159,11 +183,10 @@ namespace MapHoursMod
                 IsBuildingAlwaysAccessible(buildingNameplate, buildingSummary)
             ){ return "";}
 
-            return Environment.NewLine + $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
+            return $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
         bool IsBuildingLocked(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingNameplate.textLabel.ToolTipText.Equals(locationDungeonName)){ return false; }
-
             // * See if open right now: (includes holidays + guild membership + quest)]
             return !GameManager.Instance.PlayerActivate.BuildingIsUnlocked(buildingSummary);
         }
