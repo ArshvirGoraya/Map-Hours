@@ -102,14 +102,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -234,14 +234,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -307,7 +307,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -329,7 +329,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -344,14 +344,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": false,
+                    "Value": true,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
