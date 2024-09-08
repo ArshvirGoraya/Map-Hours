@@ -12,13 +12,13 @@ A mod for [Daggerfall Unity](https://github.com/Interkarma/daggerfall-unity), an
 
 - In the map view, shows the opening/closing hours for buildings when hovering over them.
 - Mod Settings: 
- - Can adjust which BuildingType this applies to. 
- - Can adjust time formatting (12hr or 24hr)
- - Can show if the building is currently open/closed.
- - Can disable showing hours and just show if open/closed.
- - Can show as open if the building is unlocked (e.g., building is unlocked for guild member of high rank even in closing hours).
- - Can adjust what comes before/after in the tool tip: hours or opening/closed.
- - Can adjust if hours or opening/closed show in separate lines or just in one line.
+  - Can adjust which BuildingType this applies to. 
+  - Can adjust time formatting (12hr or 24hr)
+  - Can show if the building is currently open/closed.
+  - Can disable showing hours and just show if open/closed.
+  - Can show as open if the building is unlocked (e.g., building is unlocked for guild member of high rank even in closing hours).
+  - Can adjust what comes before/after in the tool tip: hours or opening/closed.
+  - Can adjust if hours or opening/closed show in separate lines or just in one line.
 
 Here is a video example: https://youtu.be/lKpoHgwrqDM
 
