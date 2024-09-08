@@ -102,7 +102,7 @@ namespace MapHoursMod
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            if (MapHoursSettings.GetBool("ToolTips", "HoursAboveOpenClosed")){ 
+            if (MapHoursSettings.GetBool("ToolTips", "HoursBeforeOpenClosed")){ 
                 return buildingsList[buildingSummary][0] + buildingsList[buildingSummary][1];
             }
             return buildingsList[buildingSummary][1] + buildingsList[buildingSummary][0];
@@ -140,7 +140,7 @@ namespace MapHoursMod
         string GetBuildingOpenClosedText(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowOpenClosed")){ return ""; }
 
-            if (MapHoursSettings.GetBool("ToolTipsExperimental", "DontShowOpenClosedForAlwaysAccessible") &&
+            if (MapHoursSettings.GetBool("ToolTips", "DontShowOpenClosedForAlwaysAccessible") &&
                 IsBuildingAlwaysAccessible(buildingNameplate, buildingSummary)
             ){ return ""; }
 
@@ -155,7 +155,7 @@ namespace MapHoursMod
         string GetBuildingHours(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowHours")){ return ""; }
 
-            if (MapHoursSettings.GetBool("ToolTipsExperimental", "DontShowHoursForAlwaysAccessible") &&
+            if (MapHoursSettings.GetBool("ToolTips", "DontShowHoursForAlwaysAccessible") &&
                 IsBuildingAlwaysAccessible(buildingNameplate, buildingSummary)
             ){ return "";}
 

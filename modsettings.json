@@ -22,19 +22,18 @@
                 },
                 {
                     "Value": true,
-                    "Name": "HoursAboveOpenClosed",
-                    "Description": "Shows Hours Above (Open/Closed) instead of below.",
+                    "Name": "HoursBeforeOpenClosed",
+                    "Description": "Shows Hours Before (Open/Closed) instead of After.",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
-                }
-            ],
-            "$version": "v1"
-        },
-        {
-            "Name": "ToolTipsExperimental",
-            "Description": "Settings which may not behave perfectly.",
-            "IsAdvanced": true,
-            "Keys": [
+                },
+                {
+                    "Value": true,
+                    "Name": "ShowHoursAndOpenClosedInSameLine",
+                    "Description": "Instead of seperating into 2 lines will show in the same line.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
                 {
                     "Value": true,
                     "Name": "DontShowHoursForAlwaysAccessible",
