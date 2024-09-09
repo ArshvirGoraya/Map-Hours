@@ -12,6 +12,7 @@ A mod for [Daggerfall Unity](https://github.com/Interkarma/daggerfall-unity), an
 
 - In the map view, shows the opening/closing hours for buildings when hovering over them.
 - Mod Settings: 
+  - Can also show the quality of the building (e.g., rusty, sturdy, etc.)
   - Can adjust which BuildingType this applies to. 
   - Can adjust time formatting (12hr or 24hr)
   - Can show if the building is currently open/closed.

@@ -17,7 +17,6 @@ using static DaggerfallWorkshop.DaggerfallLocation;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
 using static DaggerfallConnect.DFLocation;
 using DaggerfallConnect.Utility;
-
 namespace MapHoursMod
 {
     public class MapHours : MonoBehaviour
@@ -62,6 +61,7 @@ namespace MapHoursMod
             }
             buildingsList.Clear();
         }
+        ////////////////////////////////////
         private void LateUpdate(){
             if (!(DaggerfallUI.UIManager.TopWindow is DaggerfallExteriorAutomapWindow)){
                 return;
@@ -78,10 +78,10 @@ namespace MapHoursMod
             }
             justOpenedMap = false;
         }
-        public StaticDoor[] FindAllDungeonDoors(){ // not optimal but more accurate
-            DaggerfallStaticDoors[] doorCollections = GameManager.Instance.StreamingWorld.CurrentPlayerLocationObject.StaticDoorCollections;
-            return DaggerfallStaticDoors.FindDoorsInCollections(doorCollections, DoorTypes.DungeonEntrance);
-        }
+        // public StaticDoor[] FindAllDungeonDoors(){ // not optimal but more accurate
+        //     DaggerfallStaticDoors[] doorCollections = GameManager.Instance.StreamingWorld.CurrentPlayerLocationObject.StaticDoorCollections;
+        //     return DaggerfallStaticDoors.FindDoorsInCollections(doorCollections, DoorTypes.DungeonEntrance);
+        // }
         void SetToolTip(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingsList.TryGetValue(buildingSummary, out _)){
                 // * Building is stored: Check if need to update the open/close text:
@@ -89,19 +89,29 @@ namespace MapHoursMod
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingNameplate, buildingSummary);
                 }
             }else{
+                string[] buildingQuality = GetBuildingQualityText(buildingSummary);
+
                 // * Building is NOT stored: Create time and open/close text.
                 buildingsList.Add(
                     buildingSummary, 
-                    new string[2]{
+                    new string[4]{
                         GetBuildingHours(buildingNameplate, buildingSummary), // * Create Open/Close time for building.
-                        GetBuildingOpenClosedText(buildingNameplate, buildingSummary) // * Get if building is open/closed:
-                });
+                        GetBuildingOpenClosedText(buildingNameplate, buildingSummary), // * Get if building is open/closed.
+                        buildingQuality[0],
+                        buildingQuality[1],
+                    }
+                );
             }
             // * Set tooltips text.
             buildingNameplate.textLabel.ToolTipText += GetStoredToolTipText(buildingSummary);
         }
         string GetStoredToolTipText(BuildingSummary buildingSummary){
-            if (buildingsList[buildingSummary][0].Length == 0 && buildingsList[buildingSummary][1].Length == 0){
+            if (
+                buildingsList[buildingSummary][0].Length == 0 && 
+                buildingsList[buildingSummary][1].Length == 0 && 
+                buildingsList[buildingSummary][2].Length == 0 && 
+                buildingsList[buildingSummary][3].Length == 0
+                ){
                 return "";
             }
             string hours = buildingsList[buildingSummary][0];
@@ -131,8 +141,92 @@ namespace MapHoursMod
                     if (hours.Length != 0){ returnText += Environment.NewLine + hours; }
                 }
             }
+            // * Quality Texts
+            if (buildingsList[buildingSummary][2].Length == 0 &&  buildingsList[buildingSummary][3].Length == 0){
+                return returnText;
+            }
+            string qualityNumber = buildingsList[buildingSummary][2];
+            string qualityText = buildingsList[buildingSummary][3];
+            returnText += Environment.NewLine;
+
+            if (MapHoursSettings.GetBool("ToolTips", "QualityNumberBeforeQualityText")){
+                if (qualityNumber.Length != 0){
+                    returnText += qualityNumber;
+                }
+                if (qualityText.Length != 0){
+                    if (qualityNumber.Length != 0){
+                        returnText += " ";    
+                    }
+                    returnText += qualityText;
+                }
+            }else{
+                if (qualityText.Length != 0){
+                    returnText += qualityText;
+                }
+                if (qualityNumber.Length != 0){
+                    if (qualityText.Length != 0){
+                        returnText += " ";    
+                    }
+                    returnText += qualityNumber;
+                }
+            }
+
             return returnText;
         }
+        ////////////////////////////////////
+        string[] GetBuildingQualityText(BuildingSummary buildingSummary){
+            string[] qualityText = {"", ""};
+            // if (!IsBuildingStore(buildingSummary)){
+            //     return qualityText;
+            // }
+            if (!IsQualityTextSupported(buildingSummary.BuildingType)){
+                return qualityText;
+            }
+            //
+            int shopQuality = GetShopQualityNumber(buildingSummary);
+            if (MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowQualityNumber")){
+                qualityText[0] = $"({shopQuality})";
+            }
+            if (MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowQualityText")){
+                qualityText[1] = GetShopQualityText(shopQuality);
+            }
+            return qualityText;
+        }
+        int GetShopQualityNumber(BuildingSummary buildingSummary){
+            if (buildingSummary.Quality <= 3) return 1;
+            else if (buildingSummary.Quality <= 7) return 2;
+            else if (buildingSummary.Quality <= 13) return 3;
+            else if (buildingSummary.Quality <= 17) return 4;
+            else return 5;
+        }
+        string GetShopQualityText(int quality){
+            switch (quality){
+                case 1: return "(Rusty)";
+                case 2: return "(Sturdy)";
+                case 3: return "(Practical)";
+                case 4: return "(Appointed)";
+                default: return "(Soothing)";
+            }
+        }
+        bool IsQualityTextSupported(BuildingTypes buildingType){
+            return  (
+                MapHoursSettings.GetBool(buildingType.ToString(), "ShowQualityNumber") || 
+                MapHoursSettings.GetBool(buildingType.ToString(), "ShowQualityText")
+            );
+        }
+        // bool IsBuildingStore(BuildingSummary buildingSummary){
+        //     return (
+        //         buildingSummary.BuildingType == BuildingTypes.Alchemist ||
+        //         buildingSummary.BuildingType == BuildingTypes.Armorer ||
+        //         buildingSummary.BuildingType == BuildingTypes.Bookseller ||
+        //         buildingSummary.BuildingType == BuildingTypes.GeneralStore ||
+        //         buildingSummary.BuildingType == BuildingTypes.ClothingStore ||
+        //         buildingSummary.BuildingType == BuildingTypes.GemStore ||
+        //         buildingSummary.BuildingType == BuildingTypes.PawnShop ||
+        //         buildingSummary.BuildingType == BuildingTypes.WeaponSmith ||
+        //         buildingSummary.BuildingType == BuildingTypes.FurnitureStore
+        //     );
+        // }
         bool IsBuildingAlwaysAccessible(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             // * If opening and closing hours are the same (e.g., Taverns, Temples)
             if (PlayerActivate.openHours[(int)buildingSummary.BuildingType] == PlayerActivate.closeHours[(int)buildingSummary.BuildingType] % 25){ // If 25 reset to 0.
@@ -200,6 +294,7 @@ namespace MapHoursMod
         }
         bool IsBuildingSupported(BuildingTypes buildingType){
             if (MapHoursSettings.GetBool(buildingType.ToString(), "ShowHours") || MapHoursSettings.GetBool(buildingType.ToString(), "ShowOpenClosed")){ return true; }
+            if (IsQualityTextSupported(buildingType)){ return true; }
             return false;
         }
     }

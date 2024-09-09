@@ -1,10 +1,10 @@
 {
     "ModTitle": "Map Hours",
-    "ModVersion": "1.0.0",
+    "ModVersion": "1.1.0",
     "ModAuthor": "Arshvir Goraya",
     "ContactInfo": "arshvir.dev@gmail.com",
     "DFUnity_Version": "1.1.0",
-    "ModDescription": "Shows the opening/closing times of buildings in the map.",
+    "ModDescription": "Shows information about buildings in the map including opening/closing times and building quality.",
     "GUID": "25676268-eb85-4f17-9f56-ad9f69fd96b8",
     "Files": [
         "Assets/Game/Mods/MapHours/MapHours.cs",

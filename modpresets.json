@@ -7,99 +7,147 @@
         "Values": {
             "Alchemist": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Armorer": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Bank": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Bookseller": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GeneralStore": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "ClothingStore": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GemStore": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Library": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GuildHall": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "PawnShop": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "WeaponSmith": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Temple": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Tavern": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Palace": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "FurnitureStore": {
                 "ShowOpenClosed": "True",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "HouseForSale": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House1": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House3": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House4": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House5": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House6": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town4": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town23": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House2": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             }
         },
         "$version": "v1"
@@ -112,99 +160,147 @@
         "Values": {
             "Alchemist": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Armorer": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Bank": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Bookseller": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GeneralStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "ClothingStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GemStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Library": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GuildHall": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "PawnShop": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "WeaponSmith": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Temple": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Tavern": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Palace": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "FurnitureStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "HouseForSale": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House1": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House2": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House3": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House5": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House6": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town23": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             }
         },
         "$version": "v1"
@@ -217,99 +313,304 @@
         "Values": {
             "Alchemist": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "Armorer": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "Bank": {
-                "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowQualityText": "False",
+                "ShowQualityNumber": "False",
+                "ShowOpenClosed": "False",
+                "ShowHours": "False"
             },
             "Bookseller": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "GeneralStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "ClothingStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "GemStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "GuildHall": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Library": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "PawnShop": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "WeaponSmith": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityText": "True",
+                "ShowQualityNumber": "True"
             },
             "FurnitureStore": {
                 "ShowHours": "True",
-                "ShowOpenClosed": "True"
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             },
             "Temple": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Tavern": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Palace": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "HouseForSale": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House1": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House2": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House3": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House5": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House6": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town23": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
+            }
+        },
+        "$version": "v1"
+    },
+    {
+        "Title": "All On",
+        "Author": "Arshvir goraya",
+        "Description": "Turns every setting on for every building.",
+        "SettingsVersion": "1.0.0",
+        "Values": {
+            "ToolTips": {
+                "DontShowHoursForAlwaysAccessible": "False",
+                "DontShowOpenClosedForAlwaysAccessible": "False"
+            },
+            "Armorer": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Alchemist": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Bank": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "GeneralStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Bookseller": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "ClothingStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "GemStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Library": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "GuildHall": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "PawnShop": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "WeaponSmith": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Temple": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Palace": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Tavern": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "FurnitureStore": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House1": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "HouseForSale": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House2": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House3": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House4": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House5": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "House6": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Town4": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
+            },
+            "Town23": {
+                "ShowHours": "True",
+                "ShowOpenClosed": "True",
+                "ShowQualityNumber": "True",
+                "ShowQualityText": "True"
             }
         },
         "$version": "v1"
@@ -322,99 +623,147 @@
         "Values": {
             "Alchemist": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Armorer": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityText": "False",
+                "ShowQualityNumber": "False"
             },
             "Bank": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityText": "False",
+                "ShowQualityNumber": "False"
             },
             "GeneralStore": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Bookseller": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "ClothingStore": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityText": "False",
+                "ShowQualityNumber": "False"
             },
             "Library": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GemStore": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "GuildHall": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "PawnShop": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "WeaponSmith": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Temple": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Palace": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Tavern": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "FurnitureStore": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "HouseForSale": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House1": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House2": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House3": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House5": {
                 "ShowOpenClosed": "False",
-                "ShowHours": "False"
+                "ShowHours": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "House6": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town4": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             },
             "Town23": {
                 "ShowHours": "False",
-                "ShowOpenClosed": "False"
+                "ShowOpenClosed": "False",
+                "ShowQualityNumber": "False",
+                "ShowQualityText": "False"
             }
         },
         "$version": "v1"
