@@ -41,6 +41,7 @@ namespace MapHoursMod
         }
         static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
             MapHoursSettings = modSettings;
+            ExteriorAutomap.instance.RevealUndiscoveredBuildings = MapHoursSettings.GetBool("ToolTips", "RevealUndiscoveredBuildings");
             ResetStorage();
         }
         void Start(){

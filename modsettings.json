@@ -54,6 +54,13 @@
                     "Description": "Will not show (open/closed) if a building is always accessible.",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Value": false,
+                    "Name": "RevealUndiscoveredBuildings",
+                    "Description": "Reveals all undiscovered buildings. Turn off to remove undiscovered buildings. ",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 }
             ],
             "$version": "v1"
