@@ -115,10 +115,14 @@ namespace MapHoursMod
                 ){
                 return "";
             }
+            string returnText = "";
             string hours = buildingsList[buildingSummary][0];
             string openClosed = buildingsList[buildingSummary][1];
-            string returnText = "";
+            string qualityText = getQualityText(buildingSummary);
 
+            if (qualityText.Length > 0 && MapHoursSettings.GetBool("ToolTips", "ShowQualityNextToBuildingName")){
+                returnText += " " + qualityText;
+            }
             if (MapHoursSettings.GetBool("ToolTips", "HoursBeforeOpenClosed")){
                 if (hours.Length != 0){
                     returnText += Environment.NewLine + hours; 
@@ -142,14 +146,20 @@ namespace MapHoursMod
                     if (hours.Length != 0){ returnText += Environment.NewLine + hours; }
                 }
             }
-            // * Quality Texts
-            if (buildingsList[buildingSummary][2].Length == 0 &&  buildingsList[buildingSummary][3].Length == 0){
-                return returnText;
+
+            if (qualityText.Length > 0 && !MapHoursSettings.GetBool("ToolTips", "ShowQualityNextToBuildingName")){
+                returnText += Environment.NewLine + qualityText;
             }
+            return returnText;
+        }
+
+        string getQualityText(BuildingSummary buildingSummary){
+            if (buildingsList[buildingSummary][2].Length == 0 && buildingsList[buildingSummary][3].Length == 0){
+                return "";
+            }
+            string returnText = "";
             string qualityNumber = buildingsList[buildingSummary][2];
             string qualityText = buildingsList[buildingSummary][3];
-            returnText += Environment.NewLine;
-
             if (MapHoursSettings.GetBool("ToolTips", "QualityNumberBeforeQualityText")){
                 if (qualityNumber.Length != 0){
                     returnText += qualityNumber;
@@ -174,6 +184,7 @@ namespace MapHoursMod
 
             return returnText;
         }
+
         ////////////////////////////////////
         string[] GetBuildingQualityText(BuildingSummary buildingSummary){
             string[] qualityText = {"", ""};

@@ -35,6 +35,13 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
+                    "Value": true,
+                    "Name": "ShowQualityNextToBuildingName",
+                    "Description": "Shows Quality Text/Number next to the building name.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
                     "Value": false,
                     "Name": "QualityNumberBeforeQualityText",
                     "Description": "Shows Quality Number Before Quality Text instead of After.",
