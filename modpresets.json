@@ -3,7 +3,7 @@
         "Title": "Only Show Open/Close",
         "Author": "Arshvir Goraya",
         "Description": "Will not show hours. Only shows (open close).",
-        "SettingsVersion": "1.0.0",
+        "SettingsVersion": "1.2.0",
         "Values": {
             "Alchemist": {
                 "ShowOpenClosed": "True",
@@ -156,7 +156,7 @@
         "Title": "Only Show Hours",
         "Author": "Arshvir Goraya",
         "Description": "Will only show hours. Will not shows (open close).",
-        "SettingsVersion": "1.0.0",
+        "SettingsVersion": "1.2.0",
         "Values": {
             "Alchemist": {
                 "ShowHours": "True",
@@ -309,7 +309,7 @@
         "Title": "Only Shops",
         "Author": "Arshvir Goraya",
         "Description": "Will only show hours and (Open/Close) for shops.",
-        "SettingsVersion": "1.0.0",
+        "SettingsVersion": "1.2.0",
         "Values": {
             "Alchemist": {
                 "ShowHours": "True",
@@ -462,11 +462,12 @@
         "Title": "All On",
         "Author": "Arshvir goraya",
         "Description": "Turns every setting on for every building.",
-        "SettingsVersion": "1.0.0",
+        "SettingsVersion": "1.2.0",
         "Values": {
             "ToolTips": {
                 "DontShowHoursForAlwaysAccessible": "False",
-                "DontShowOpenClosedForAlwaysAccessible": "False"
+                "DontShowOpenClosedForAlwaysAccessible": "False",
+                "RevealUndiscoveredBuildings": "True"
             },
             "Armorer": {
                 "ShowHours": "True",
@@ -619,7 +620,7 @@
         "Title": "Disable",
         "Author": "Arshvir Goraya",
         "Description": "Doesn't show Hours or (Open/Close) for any buildings.",
-        "SettingsVersion": "1.0.0",
+        "SettingsVersion": "1.2.0",
         "Values": {
             "Alchemist": {
                 "ShowHours": "False",

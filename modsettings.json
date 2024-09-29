@@ -1,5 +1,5 @@
 {
-    "Version": "1.0.0",
+    "Version": "1.2.0",
     "Sections": [
         {
             "Name": "ToolTips",
@@ -49,7 +49,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "DontShowHoursForAlwaysAccessible",
                     "Description": "Will not show hours if a building is always accessible.",
                     "$version": "v1",
@@ -78,14 +78,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -99,7 +99,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -114,14 +114,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -135,7 +135,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -150,14 +150,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -186,14 +186,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -207,7 +207,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -222,14 +222,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -243,7 +243,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -258,14 +258,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -279,7 +279,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -294,14 +294,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -315,7 +315,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -337,7 +337,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -366,14 +366,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -402,14 +402,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -423,7 +423,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -438,14 +438,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -459,7 +459,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
@@ -481,7 +481,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -517,7 +517,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -546,14 +546,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -582,14 +582,14 @@
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowHours",
                     "Description": null,
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowOpenClosed",
                     "Description": null,
                     "$version": "v1",
@@ -603,7 +603,7 @@
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
+                    "Value": false,
                     "Name": "ShowQualityText",
                     "Description": null,
                     "$version": "v1",
