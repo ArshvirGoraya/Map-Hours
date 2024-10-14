@@ -17,6 +17,8 @@ using static DaggerfallWorkshop.DaggerfallLocation;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
 using static DaggerfallConnect.DFLocation;
 using DaggerfallConnect.Utility;
+using Mono.Cecil;
+using DaggerfallWorkshop.Game.UserInterface;
 namespace MapHoursMod
 {
     public class MapHours : MonoBehaviour
@@ -27,6 +29,11 @@ namespace MapHoursMod
         const string CLOSED_TEXT = "(CLOSED)";
         static bool justOpenedMap = false;
         static string locationDungeonName = null;
+        // const float NamePlateTextScaleDefault = 3.159375f;
+        // readonly Vector2 ToolTipScaleDefault = new Vector2(1.0f, 1.0f);
+        // readonly static float NamePlateTextScale = 3f;
+        // readonly static Vector2 ToolTipScale = new Vector2(1.5f, 1.5f);
+        static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
         ////////////////////////////////////
         static ModSettings MapHoursSettings;
         private static Mod mod;
@@ -39,8 +46,20 @@ namespace MapHoursMod
             mod.LoadSettings();
             mod.IsReady = true;
         }
+        static DaggerfallFont GetToolTipFont(int font_num){
+            switch (font_num)
+            {
+                case 0: return DaggerfallUI.LargeFont;
+                case 1: return DaggerfallUI.TitleFont;
+                case 2: return DaggerfallUI.SmallFont;
+                case 3: return DaggerfallUI.DefaultFont;
+                case 4: return DaggerfallUI.Instance.GetFont(DaggerfallFont.FontName.FONT0004);
+                default: return DaggerfallUI.DefaultFont;
+            }
+        }
         static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
             MapHoursSettings = modSettings;
+            toolTipFont = GetToolTipFont(MapHoursSettings.GetInt("ToolTips", "ToolTipSize"));
             ExteriorAutomap.instance.RevealUndiscoveredBuildings = MapHoursSettings.GetBool("ToolTips", "RevealUndiscoveredBuildings");
             ResetStorage();
         }
@@ -69,6 +88,14 @@ namespace MapHoursMod
                 return;
             }
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
+                if (true){
+                    // buildingNameplate.textLabel.TextScale = NamePlateTextScale;
+                    // buildingNameplate.textLabel.ToolTip.AutoSize = AutoSizeModes.Scale;
+                    // buildingNameplate.textLabel.ToolTip.Scale = ToolTipScale;
+                    // Debug.Log($"autosize mode: {buildingNameplate.textLabel.ToolTip.AutoSize}");
+                    buildingNameplate.textLabel.ToolTip.Font = toolTipFont;
+                }
+                
                 if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
                     // * If first building has the same Label as the stored.
                     if (buildingNameplate.textLabel.ToolTipText.EndsWith(")")){ 

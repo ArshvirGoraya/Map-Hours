@@ -1,5 +1,5 @@
 {
-    "Version": "1.2.0",
+    "Version": "1.3.0",
     "Sections": [
         {
             "Name": "ToolTips",
@@ -68,6 +68,20 @@
                     "Description": "Reveals all undiscovered buildings. Turn off to remove undiscovered buildings. ",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
+                },
+                {
+                    "Options": [
+                        "Large Font",
+                        "Title Font",
+                        "Small Font",
+                        "Default Font",
+                        "Unused"
+                    ],
+                    "Value": 3,
+                    "Name": "ToolTipSize",
+                    "Description": "Sets the size of the tooltip text.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.MultipleChoiceKey"
                 }
             ],
             "$version": "v1"
