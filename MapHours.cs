@@ -46,12 +46,13 @@ namespace MapHoursMod
         }
         void Start(){
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
-            PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
+            DaggerfallWorkshop.PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
         }
         private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
             justOpenedMap = true;
         }
-        private void OnMapPixelChanged(DFPosition mapPixel){
+        static private void OnMapPixelChanged(DFPosition mapPixel){
+            if (!GameManager.Instance.StateManager.GameInProgress) { return; } // * Required or will generate errors in Player.log
             ResetStorage();
         }
         static private void ResetStorage(){
@@ -118,7 +119,7 @@ namespace MapHoursMod
             string returnText = "";
             string hours = buildingsList[buildingSummary][0];
             string openClosed = buildingsList[buildingSummary][1];
-            string qualityText = getQualityText(buildingSummary);
+            string qualityText = GetQualityText(buildingSummary);
 
             if (qualityText.Length > 0 && MapHoursSettings.GetBool("ToolTips", "ShowQualityNextToBuildingName")){
                 returnText += " " + qualityText;
@@ -153,7 +154,7 @@ namespace MapHoursMod
             return returnText;
         }
 
-        string getQualityText(BuildingSummary buildingSummary){
+        string GetQualityText(BuildingSummary buildingSummary){
             if (buildingsList[buildingSummary][2].Length == 0 && buildingsList[buildingSummary][3].Length == 0){
                 return "";
             }
