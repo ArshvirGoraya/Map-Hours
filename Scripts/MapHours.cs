@@ -19,6 +19,10 @@ using static DaggerfallConnect.DFLocation;
 using DaggerfallConnect.Utility;
 using Mono.Cecil;
 using DaggerfallWorkshop.Game.UserInterface;
+using UnityEditor;
+using TMPro;
+using System.Reflection;
+
 namespace MapHoursMod
 {
     public class MapHours : MonoBehaviour
@@ -33,7 +37,13 @@ namespace MapHoursMod
         // readonly Vector2 ToolTipScaleDefault = new Vector2(1.0f, 1.0f);
         // readonly static float NamePlateTextScale = 3f;
         // readonly static Vector2 ToolTipScale = new Vector2(1.5f, 1.5f);
-        static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
+        static float toolTipSize = 1;
+        // static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
+        // static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
+        // static DaggerfallFont newFont = DaggerfallUI.DefaultFont;
+        // static TMP_FontAsset customTmpFont = Resources.Load<TMP_FontAsset>("FONT0003-SDF-copy");
+        PropertyInfo textScaleInfo = typeof(ToolTip).GetProperty("TextScale", BindingFlags.Public | BindingFlags.Instance);
+        bool textScaleExists;
         ////////////////////////////////////
         static ModSettings MapHoursSettings;
         private static Mod mod;
@@ -46,26 +56,39 @@ namespace MapHoursMod
             mod.LoadSettings();
             mod.IsReady = true;
         }
-        static DaggerfallFont GetToolTipFont(int font_num){
-            switch (font_num)
-            {
-                case 0: return DaggerfallUI.LargeFont;
-                case 1: return DaggerfallUI.TitleFont;
-                case 2: return DaggerfallUI.SmallFont;
-                case 3: return DaggerfallUI.DefaultFont;
-                case 4: return DaggerfallUI.Instance.GetFont(DaggerfallFont.FontName.FONT0004);
-                default: return DaggerfallUI.DefaultFont;
-            }
-        }
+        // static DaggerfallFont GetToolTipFont(int font_num){
+        //     switch (font_num)
+        //     {
+        //         case 0: return DaggerfallUI.LargeFont;
+        //         case 1: return DaggerfallUI.TitleFont;
+        //         case 2: return DaggerfallUI.SmallFont;
+        //         case 3: return DaggerfallUI.DefaultFont;
+        //         case 4: return DaggerfallUI.Instance.GetFont(DaggerfallFont.FontName.FONT0004);
+        //         default: return DaggerfallUI.DefaultFont;
+        //     }
+        // }
         static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
             MapHoursSettings = modSettings;
-            toolTipFont = GetToolTipFont(MapHoursSettings.GetInt("ToolTips", "ToolTipSize"));
+            // toolTipFont = GetToolTipFont(MapHoursSettings.GetInt("ToolTips", "ToolTipFont"));
+            toolTipSize = MapHoursSettings.GetFloat("ToolTips", "ToolTipSize");
             ExteriorAutomap.instance.RevealUndiscoveredBuildings = MapHoursSettings.GetBool("ToolTips", "RevealUndiscoveredBuildings");
             ResetStorage();
         }
         void Start(){
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
             DaggerfallWorkshop.PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
+            textScaleExists = textScaleInfo != null;
+            // newFont = new DaggerfallFont(DaggerfallFont.FontName.FONT0003);
+            // newFont.SDFFontInfo;
+
+            // Font customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/Game/Mods/MapHours/Fonts/KingthingsPetrock.tff");
+            // Font customFont = Resources.Load<Font>("Fonts/Kingthings Petrock");
+            // customTmpFont = Resources.Load<TMP_FontAsset>("FONT0003-SDF-copy");
+            
+            // if (customTmpFont == null){
+            //     Debug.Log($"map hours - custom font not loaded");
+            // }
+            // Debug.Log($"map hours - customFont: {customTmpFont}");
         }
         private void UIManager_OnWindowChangeHandler(object sender, EventArgs e){
             justOpenedMap = true;
@@ -88,12 +111,24 @@ namespace MapHoursMod
                 return;
             }
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
-                if (true){
+                if (textScaleExists){
+                    buildingNameplate.textLabel.ToolTip.TextScale = toolTipSize;
+
                     // buildingNameplate.textLabel.TextScale = NamePlateTextScale;
-                    // buildingNameplate.textLabel.ToolTip.AutoSize = AutoSizeModes.Scale;
-                    // buildingNameplate.textLabel.ToolTip.Scale = ToolTipScale;
                     // Debug.Log($"autosize mode: {buildingNameplate.textLabel.ToolTip.AutoSize}");
-                    buildingNameplate.textLabel.ToolTip.Font = toolTipFont;
+
+                    // buildingNameplate.textLabel.ToolTip.AutoSize = AutoSizeModes.ScaleFreely;
+                    // buildingNameplate.textLabel.ToolTip.AutoSize = AutoSizeModes.ScaleToFit;
+                    // buildingNameplate.textLabel.ToolTip.Scale = ToolTipScale;
+
+                    // buildingNameplate.textLabel.ToolTip.Font = toolTipFont;
+                    // buildingNameplate.textLabel.ToolTip.Font = newFont;
+
+                    // MapHoursToolTip toolTipOverwrite = new MapHoursToolTip();
+                    // toolTipOverwrite.Draw(buildingNameplate.textLabel.ToolTipText);
+
+                    // buildingNameplate.textLabel.ToolTip.Font.LoadSDFFontAsset("FONT0003-SDF-copy");
+                    // buildingNameplate.textLabel.ToolTip.Font.LoadSDFFontAsset("Kingthings Petrock-copy");
                 }
                 
                 if (IsBuildingSupported(((BuildingSummary)buildingNameplate.textLabel.Tag).BuildingType)){
