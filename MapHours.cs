@@ -93,7 +93,7 @@ namespace MapHoursMod
             }else{
                 string[] buildingQuality = GetBuildingQualityText(buildingSummary);
 
-                // * Building is NOT stored: Create time and open/close text.
+                // * Building is NOT stored: Create time and open/close text and quality text.
                 buildingsList.Add(
                     buildingSummary, 
                     new string[4]{
@@ -286,9 +286,14 @@ namespace MapHoursMod
         string GetBuildingHours(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (!MapHoursSettings.GetBool(buildingSummary.BuildingType.ToString(), "ShowHours")){ return ""; }
 
-            if (MapHoursSettings.GetBool("ToolTips", "DontShowHoursForAlwaysAccessible") &&
-                IsBuildingAlwaysAccessible(buildingNameplate, buildingSummary)
-            ){ return "";}
+            // * House2 should NOT show up here unless you are a member of DB/TG.
+            bool isDBTG = buildingSummary.BuildingType == BuildingTypes.House2; //&& buildingSummary.FactionId != 0 && GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).IsMember();
+            
+            if (MapHoursSettings.GetBool("ToolTips", "DontShowHoursForAlwaysAccessible")){ 
+                if (isDBTG || IsBuildingAlwaysAccessible(buildingNameplate, buildingSummary)) { return ""; }
+            }
+            
+            if (isDBTG){ return $"({ConvertTime(0)} - {ConvertTime(25)})"; } // * DB/TG open 24/7 (cant get through (int)buildingSummary.BuildingType).
 
             return $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
         }
