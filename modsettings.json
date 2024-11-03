@@ -85,7 +85,7 @@
                 },
                 {
                     "Min": 0.0,
-                    "Max": 2.0,
+                    "Max": 20.0,
                     "Value": 1.0,
                     "Name": "ToolTipSize",
                     "Description": "Sets the size of the tooltip text.",

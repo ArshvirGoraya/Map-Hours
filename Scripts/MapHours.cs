@@ -27,6 +27,7 @@ namespace MapHoursMod
 {
     public class MapHours : MonoBehaviour
     {
+        public static MapHours Instance;
         public BuildingNameplate[] buildingNameplatesRef;
         static readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
         const string OPEN_TEXT = "(OPEN)";
@@ -37,7 +38,7 @@ namespace MapHoursMod
         // readonly Vector2 ToolTipScaleDefault = new Vector2(1.0f, 1.0f);
         // readonly static float NamePlateTextScale = 3f;
         // readonly static Vector2 ToolTipScale = new Vector2(1.5f, 1.5f);
-        static float toolTipSize = 1;
+        public float toolTipSize = 1;
         // static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
         // static DaggerfallFont toolTipFont = DaggerfallUI.DefaultFont;
         // static DaggerfallFont newFont = DaggerfallUI.DefaultFont;
@@ -56,6 +57,9 @@ namespace MapHoursMod
             mod.LoadSettings();
             mod.IsReady = true;
         }
+        void Awake(){
+            if (Instance == null) Instance = this;
+        }
         // static DaggerfallFont GetToolTipFont(int font_num){
         //     switch (font_num)
         //     {
@@ -70,7 +74,7 @@ namespace MapHoursMod
         static void LoadSettings(ModSettings modSettings, ModSettingsChange change){
             MapHoursSettings = modSettings;
             // toolTipFont = GetToolTipFont(MapHoursSettings.GetInt("ToolTips", "ToolTipFont"));
-            toolTipSize = MapHoursSettings.GetFloat("ToolTips", "ToolTipSize");
+            Instance.toolTipSize = MapHoursSettings.GetFloat("ToolTips", "ToolTipSize");
             ExteriorAutomap.instance.RevealUndiscoveredBuildings = MapHoursSettings.GetBool("ToolTips", "RevealUndiscoveredBuildings");
             ResetStorage();
         }
@@ -78,6 +82,9 @@ namespace MapHoursMod
             DaggerfallUI.UIManager.OnWindowChange += UIManager_OnWindowChangeHandler;
             DaggerfallWorkshop.PlayerGPS.OnMapPixelChanged += OnMapPixelChanged;
             textScaleExists = textScaleInfo != null;
+            if (!textScaleExists){
+                Debug.Log($"text scale parmater does not exist in this version of DFUnity.");
+            }
             // newFont = new DaggerfallFont(DaggerfallFont.FontName.FONT0003);
             // newFont.SDFFontInfo;
 
@@ -112,7 +119,7 @@ namespace MapHoursMod
             }
             foreach (var buildingNameplate in ExteriorAutomap.instance.buildingNameplates){
                 if (textScaleExists){
-                    buildingNameplate.textLabel.ToolTip.TextScale = toolTipSize;
+                    buildingNameplate.textLabel.ToolTip.TextScale = Instance.toolTipSize;
 
                     // buildingNameplate.textLabel.TextScale = NamePlateTextScale;
                     // Debug.Log($"autosize mode: {buildingNameplate.textLabel.ToolTip.AutoSize}");
@@ -153,9 +160,8 @@ namespace MapHoursMod
                     buildingsList[buildingSummary][1] = GetBuildingOpenClosedText(buildingNameplate, buildingSummary);
                 }
             }else{
-                string[] buildingQuality = GetBuildingQualityText(buildingSummary);
-
                 // * Building is NOT stored: Create time and open/close text.
+                string[] buildingQuality = GetBuildingQualityText(buildingSummary);
                 buildingsList.Add(
                     buildingSummary, 
                     new string[4]{
