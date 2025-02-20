@@ -17,16 +17,21 @@ using static DaggerfallWorkshop.DaggerfallLocation;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
 using static DaggerfallConnect.DFLocation;
 using DaggerfallConnect.Utility;
+using System.Linq;
 namespace MapHoursMod
 {
     public class MapHours : MonoBehaviour
     {
         public BuildingNameplate[] buildingNameplatesRef;
         static readonly Dictionary<BuildingSummary, string[]> buildingsList = new Dictionary<BuildingSummary, string[]>();
+        static readonly Dictionary<int, BuildingSummary> debugHelper = new Dictionary<int, BuildingSummary>();
         const string OPEN_TEXT = "(OPEN)";
         const string CLOSED_TEXT = "(CLOSED)";
         static bool justOpenedMap = false;
         static string locationDungeonName = null;
+        // 
+        public static byte[] openHours  = {  7,  8,  9,  8,  0,  9, 10, 10,  9,  6,  9, 11,  9,  9,  0,  0, 10, 0 };
+        public static byte[] closeHours = { 22, 16, 19, 15, 25, 21, 19, 20, 18, 23, 23, 23, 20, 20, 25, 25, 16, 0 };
         ////////////////////////////////////
         static ModSettings MapHoursSettings;
         private static Mod mod;
@@ -241,10 +246,6 @@ namespace MapHoursMod
         //     );
         // }
         bool IsBuildingAlwaysAccessible(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
-            // * If opening and closing hours are the same (e.g., Taverns, Temples)
-            if (PlayerActivate.openHours[(int)buildingSummary.BuildingType] == PlayerActivate.closeHours[(int)buildingSummary.BuildingType] % 25){ // If 25 reset to 0.
-                return true;
-            }
             // * Depends on Guild rank:
             if (GameManager.Instance.GuildManager.GetGuild(buildingSummary.FactionId).HallAccessAnytime()){
                 return true;
@@ -253,8 +254,59 @@ namespace MapHoursMod
             if (buildingNameplate.textLabel.ToolTipText.Equals(locationDungeonName)){
                 return true;
             }
+            // * If opening and closing hours are the same (e.g., Taverns, Temples)
+            if (GetOpeningHoursInt(buildingNameplate, buildingSummary) == GetClosingHoursInt(buildingNameplate, buildingSummary)){
+                return true;
+            }
             return false;
         }
+
+        public int GetOpeningHoursInt(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
+            if (openHours.Length <= (int)buildingSummary.BuildingType){
+                if (!debugHelper.ContainsKey((int)buildingSummary.BuildingType)){
+                    if (!openHours.SequenceEqual(PlayerActivate.openHours)){
+                        Debug.Log($@"MapHours WARNING: openHours data changed by another mod - potentially incorrect openHours:
+                            [{String.Join(", ", PlayerActivate.openHours)}] != [{String.Join(", ", openHours)}]
+                            {openHours.Length} != : {PlayerActivate.openHours.Length}");
+                    }
+                    Debug.Log($@"MapHours WARNING: Can't find opening hours for Building Type: 
+                    buildingNameplate: {buildingNameplate.name}, 
+                    BuildingType (int): {(int)buildingSummary.BuildingType}, 
+                    BuildingType (string): {buildingSummary.BuildingType},
+                    openHours: [{String.Join(", ", openHours)}]
+                    ");
+                    debugHelper[(int)buildingSummary.BuildingType] = buildingSummary;
+                }
+                return 0;
+            }
+            int hour = openHours[(int)buildingSummary.BuildingType];
+            if (hour >= 24) {hour = 0;}
+            return hour;
+        }
+
+        public int GetClosingHoursInt(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
+            if (closeHours.Length <= (int)buildingSummary.BuildingType){
+                if (!debugHelper.ContainsKey((int)buildingSummary.BuildingType)){
+                    if (!closeHours.SequenceEqual(PlayerActivate.closeHours)){
+                        Debug.Log($@"MapHours WARNING: closeHours data changed by another mod - potentially incorrect closeHours:
+                            [{String.Join(", ", PlayerActivate.closeHours)}] != [{String.Join(", ", closeHours)}]
+                            {closeHours.Length} != : {PlayerActivate.closeHours.Length}");
+                    }
+                    Debug.Log($@"MapHours WARNING: Can't find closing hours for Building Type: 
+                    buildingNameplate: {buildingNameplate.name}, 
+                    BuildingType (int): {(int)buildingSummary.BuildingType}, 
+                    BuildingType (string): {buildingSummary.BuildingType},
+                    closeHours: [{String.Join(", ", closeHours)}]
+                    ");
+                    debugHelper[(int)buildingSummary.BuildingType] = buildingSummary;
+                }
+                return 0;
+            }
+            int hour = closeHours[(int)buildingSummary.BuildingType];
+            if (hour >= 24) {hour = 0;}
+            return hour;
+        }
+
         // * Taken from: DaggerfallDungeon.cs
         static public string GetSpecialDungeonName(LocationSummary summary){
             string dungeonName;
@@ -295,7 +347,7 @@ namespace MapHoursMod
             
             if (isDBTG){ return $"({ConvertTime(0)} - {ConvertTime(25)})"; } // * DB/TG open 24/7 (cant get through (int)buildingSummary.BuildingType).
 
-            return $"({ConvertTime(PlayerActivate.openHours[(int)buildingSummary.BuildingType])} - {ConvertTime(PlayerActivate.closeHours[(int)buildingSummary.BuildingType])})";
+            return $"({ConvertTime(GetOpeningHoursInt(buildingNameplate, buildingSummary))} - {ConvertTime(GetClosingHoursInt(buildingNameplate, buildingSummary))})";
         }
         bool IsBuildingLocked(BuildingNameplate buildingNameplate, BuildingSummary buildingSummary){
             if (buildingNameplate.textLabel.ToolTipText.Equals(locationDungeonName)){ return false; }
