@@ -277,7 +277,6 @@ namespace MapHoursMod
                     ");
                     debugHelper[(int)buildingSummary.BuildingType] = buildingSummary;
                 }
-                return 0;
             }
             int hour = openHours[(int)buildingSummary.BuildingType];
             if (hour >= 24) {hour = 0;}
@@ -300,7 +299,6 @@ namespace MapHoursMod
                     ");
                     debugHelper[(int)buildingSummary.BuildingType] = buildingSummary;
                 }
-                return 0;
             }
             int hour = closeHours[(int)buildingSummary.BuildingType];
             if (hour >= 24) {hour = 0;}
